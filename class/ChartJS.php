@@ -5,7 +5,7 @@ abstract class ChartJS
     /**
      * @var array chart data
      */
-    protected $_data = array();
+    protected $_datasets = array();
 
     /**
      * @var array chart labels
