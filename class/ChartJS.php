@@ -12,7 +12,11 @@ abstract class ChartJS
      */
     protected $_labels = array();
 
-    protected $_type;
+    /**
+     * The chart type
+     * @var string
+     */
+    protected $_type = '';
 
     /**
      * @var array Default options
@@ -167,6 +171,7 @@ abstract class ChartJS
 
 
     /**
+     * Add label(s)
      * @param array $labels
      * @param bool $reset
      */
@@ -179,13 +184,18 @@ abstract class ChartJS
         $this->_labels = $this->_labels + $labels;
     }
 
+    /**
+     * Add dataset
+     * @param $dataset
+     * @param $reset
+     */
     public function addDataset($dataset, $reset)
     {
         if ($reset) {
-            $this->_labels = array();
+            $this->_datasets = array();
         }
 
-        $this->_data += $dataset;
+        $this->_datasets += $dataset;
     }
 
     public function __construct($id = null, $width = '', $height = '', $otherAttributes = array())
@@ -223,7 +233,7 @@ abstract class ChartJS
 
         $attributes = $this->_renderAttributes();
 
-        $canvas = '<canvas id="' . $this->_id . '" data-chartjs="'.$this->_type.'"' . $height . $width . $attributes . $data . $options . '></canvas>';
+        $canvas = '<canvas id="' . $this->_id . '" data-chartjs="' . $this->_type . '"' . $height . $width . $attributes . $data . $options . '></canvas>';
 
         return $canvas;
     }
@@ -243,6 +253,10 @@ abstract class ChartJS
         return $attributes;
     }
 
+    /**
+     * Prepare width attribute for canvas
+     * @return string
+     */
     protected function _renderWidth()
     {
         $width = '';
@@ -254,6 +268,10 @@ abstract class ChartJS
         return $width;
     }
 
+    /**
+     * Prepare height attribute for canvas
+     * @return string
+     */
     protected function _renderHeight()
     {
         $height = '';
@@ -265,11 +283,33 @@ abstract class ChartJS
         return $height;
     }
 
+    /**
+     * Render custom options for the chart
+     * @return string
+     */
     protected function _renderOptions()
     {
         if (empty($this->_options)) {
             return '';
         }
         return ' data-options=\'' . json_encode($this->_options) . '\'';
+    }
+
+
+    /**
+     * Prepare data (labels and dataset) for the chart
+     * @return string
+     */
+    protected function _renderData()
+    {
+        $data = '';
+        $array_data = array('labels' => array(), 'datasets' => array());
+        foreach ($this->_datasets as $line) {
+            $array_data['datasets'][] = $line['options'] + array('data' => $line['data']);
+        }
+
+        $array_data['labels'] = $this->_labels;
+
+        return ' data-data=\'' . json_encode($array_data) . '\'';
     }
 }
