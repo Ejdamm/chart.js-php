@@ -1,30 +1,30 @@
-(function() {
-	loadChartJsPhp();
-})();
+// Will be filled with canvas
+var ChartJSPHP = new Array();
 
-var ChartJSPHP = {};
-
+// You must call this function after document.ready
 function loadChartJsPhp() {
-	var elements = document.querySelectorAll("[data-chartjs]");
+	// Getting all chart.js canvas
+	var elements = document.querySelectorAll("canvas[data-chartjs]");
 	
+	// Looping every canvas
 	for (var i in elements)
 	{
+		// Escaping lenght and item in the loop
 		if (i === 'length' || i === 'item') {
 			continue;
 		}
-		var element = elements[i]; 
-		var id = element.id;
-		var ctx = document.getElementById(id).getContext('2d');
+		var canvas = elements[i]; 
+		var id = canvas.id;
 		
-		var htmldata = element.dataset;
-		// var options = JSON.parse(htmldata.options);
-		var data = JSON.parse(htmldata.data);
+		// Getting ctx from canvas
+		var ctx = canvas.getContext('2d');
 		
+		// Getting values in data attributes
+		var htmldata = canvas.dataset;
+		var data = JSON.parse(htmldata.data);		
 		var type = htmldata.chartjs;
 		
-		console.log(data);
-		
-		new Chart(ctx).Line(data);		
-	}
-	
+		// Creating chart and saving for later use
+		ChartJSPHP[id] = new Chart(ctx).Line(data);		
+	}	
 };
