@@ -7,6 +7,14 @@ When using a lot of charts in a project, we need to write a lot of code.
 
 This small PHP wrapper use `data-attributes` to load chart with Chart.js
 
+
+## Charts implemented
+* Line
+* Bar
+* Radar
+* Other charts are coming
+
+
 ## How to use
 Include Chart.js and chart.js-php.js before the end of your body (change src according to your project)
 ```html
@@ -78,11 +86,6 @@ $Line->addLabels(array('A label', 'Another', 'Another one', 'The last one'));
   </body>
 </html>
 ```
-
-
-## Charts implemented
-* Line
-* Other charts to come
 
 ## Contributing
 Do not hesitate to edit or improve my code with bugfix and new functionnalities !
