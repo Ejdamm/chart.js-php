@@ -23,6 +23,7 @@ Include Chart.js and chart.js-php.js before the end of your body (change src acc
 
 Load ChartJS-PHP classes or use an autoloader
 ```php
+<?php
 require 'class/ChartJS.php';
 require 'class/ChartJS_Line.php';
 ```
@@ -41,11 +42,14 @@ echo $Line;
 
 Finally, load these charts with a small piece of javascript when your document is ready
 ```js
+// Pure JS document.ready
+(function() {
 loadChartJsPhp();
+})();
 ```
 
 ## Full example
-```html
+```php
 <?php
 require 'class/ChartJS.php';
 require 'class/ChartJS_Line.php';
