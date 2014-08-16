@@ -46,6 +46,9 @@ Finally, load these charts with a small piece of javascript when your document i
 })();
 ```
 
+## Advanced use (colors, etc)
+Have a look at the wiki (soon)
+
 ## Full example
 ```php
 <?php
