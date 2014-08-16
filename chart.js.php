@@ -1,26 +1,42 @@
 <?php
 require 'class/ChartJS.php';
 require 'class/ChartJS_Line.php';
+require 'class/ChartJS_Bar.php';
 
-$Line = new ChartJS_Line('example', 500, 500);
-$Line->addLine(array(1, 2, 3, 4));
-$Line->addLabels(array('A label', 'Another', 'Another one', 'The last one'));
+$array_values = array(array(65, 59, 80, 81, 56, 55, 40), array(28, 48, 40, 19, 86, 27, 90));
+$array_labels = array("January", "February", "March", "April", "May", "June", "July");
+
+$Line = new ChartJS_Line('example_line', 500, 500);
+$Line->addLine($array_values[0]);
+$Line->addLine($array_values[1]);
+$Line->addLabels($array_labels);
+
+$Bar = new ChartJS_Bar('example_bar', 500, 500);
+$Bar->addBars($array_values[0]);
+$Bar->addBars($array_values[1]);
+$Bar->addLabels($array_labels);
 
 ?><!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Chart.js-PHP</title>
-  </head>
-  <body>
-    <?php
-      echo $Line;
-    ?>      
-    <script src="Chart.js"></script>
-    <script src="chart.js-php.js"></script>
-    <script>
-      (function() {
+</head>
+<body>
+<h1>Line</h1>
+<?php
+echo $Line;
+?>
+
+<h1>Bar</h1>
+<?php
+echo $Bar
+?>
+<script src="Chart.js"></script>
+<script src="chart.js-php.js"></script>
+<script>
+    (function () {
         loadChartJsPhp();
-      })();
-    </script>
-  </body>
+    })();
+</script>
+</body>
 </html>
