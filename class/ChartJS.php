@@ -176,7 +176,6 @@ abstract class ChartJS
      */
     protected function _renderData()
     {
-        $data = '';
         $array_data = array('labels' => array(), 'datasets' => array());
         foreach ($this->_datasets as $line) {
             $array_data['datasets'][] = $line['options'] + array('data' => $line['data']);
