@@ -4,6 +4,8 @@ require 'class/ChartJS_Line.php';
 require 'class/ChartJS_Bar.php';
 require 'class/ChartJS_Radar.php';
 require 'class/ChartJS_PolarArea.php';
+require 'class/ChartJS_Pie.php';
+require 'class/ChartJS_Doughnut.php';
 
 $array_values = array(array(65, 59, 80, 81, 56, 55, 40), array(28, 48, 40, 19, 86, 27, 90));
 $array_labels = array("January", "February", "March", "April", "May", "June", "July");
@@ -33,6 +35,20 @@ $PolarArea->addSegment(55);
 $PolarArea->addSegment(40);
 $PolarArea->addLabels($array_labels);
 
+$Pie = new ChartJS_Pie('example_pie', 500, 500);
+$Pie->addPart(65);
+$Pie->addPart(59);
+$Pie->addPart(80);
+$Pie->addPart(81);
+$Pie->addLabels($array_labels);
+
+$Doughnut = new ChartJS_Doughnut('example_doughnut', 500, 500);
+$Doughnut->addPart(65);
+$Doughnut->addPart(59);
+$Doughnut->addPart(80);
+$Doughnut->addPart(81);
+$Doughnut->addLabels($array_labels);
+
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +73,11 @@ echo $Radar
 <h1>Polar Area</h1>
 <?php
 echo $PolarArea
+?>
+
+<h1>Pie & Doughnut</h1>
+<?php
+echo $Pie . $Doughnut
 ?>
 <script src="Chart.js"></script>
 <script src="chart.js-php.js"></script>
