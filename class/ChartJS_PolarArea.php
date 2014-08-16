@@ -3,6 +3,8 @@
 class ChartJS_PolarArea extends ChartJS
 {
     protected $_type = 'PolarArea';
+    protected static $_colorsRequired = array('color', 'highlight');
+    protected static $_colorsReplacement = array('color' => 'fill', 'highlight' => 'stroke');
 
     /**
      * Add a set of data
@@ -28,6 +30,9 @@ class ChartJS_PolarArea extends ChartJS
         $i = 0;
 
         foreach ($this->_datasets as $segment) {
+
+            $this->_completeColors($segment['options'], $i);
+
             $array_data[] = $segment['options'] + array('label' => $this->_labels[$i]) + array('value' => $segment['value']);
             $i++;
         }

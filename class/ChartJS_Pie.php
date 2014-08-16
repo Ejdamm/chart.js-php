@@ -3,6 +3,8 @@
 class ChartJS_Pie extends ChartJS
 {
     protected $_type = 'Pie';
+    protected static $_colorsRequired = array('color', 'highlight');
+    protected static $_colorsReplacement = array('color' => 'fill', 'highlight' => 'stroke');
 
     /**
      * Add a set of data
@@ -28,6 +30,9 @@ class ChartJS_Pie extends ChartJS
         $i = 0;
 
         foreach ($this->_datasets as $part) {
+
+            $this->_completeColors($part['options'], $i);
+
             $array_data[] = $part['options'] + array('label' => $this->_labels[$i]) + array('value' => $part['value']);
             $i++;
         }

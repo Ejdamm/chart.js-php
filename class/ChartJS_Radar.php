@@ -3,6 +3,8 @@
 class ChartJS_Radar extends ChartJS
 {
     protected $_type = 'Radar';
+    protected static $_colorsRequired = array('fillColor', 'strokeColor', 'pointColor', 'pointStrokeColor', 'pointHighlightFill', 'pointHighlightStroke');
+    protected static $_colorsReplacement = array('pointHighlightFill' => 'point', 'pointHighlightStroke' => 'pointStroke');
 
     /**
      * Add a set of data

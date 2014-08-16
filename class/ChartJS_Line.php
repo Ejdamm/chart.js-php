@@ -3,6 +3,8 @@
 class ChartJS_Line extends ChartJS
 {
     protected $_type = 'Line';
+    protected static $_colorsRequired = array('fillColor', 'strokeColor', 'pointColor', 'pointStrokeColor', 'pointHighlightFill', 'pointHighlightStroke');
+    protected static  $_colorsReplacement = array('pointHighlightFill' => 'point', 'pointHighlightStroke' => 'pointStroke');
 
     /**
      * Add a set of data
@@ -18,5 +20,4 @@ class ChartJS_Line extends ChartJS
         $this->_datasets[$name]['data'] = $data;
         $this->_datasets[$name]['options'] = $options;
     }
-
 }

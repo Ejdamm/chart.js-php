@@ -7,6 +7,8 @@ require 'class/ChartJS_PolarArea.php';
 require 'class/ChartJS_Pie.php';
 require 'class/ChartJS_Doughnut.php';
 
+ChartJS::addDefaultColor(array('fill' => 'rgba(220,220,220,0.2)', 'stroke' => 'rgba(220,220,220,1)', 'point' => 'rgba(220,220,220,1)', 'pointStroke' => '#fff'));
+
 $array_values = array(array(65, 59, 80, 81, 56, 55, 40), array(28, 48, 40, 19, 86, 27, 90));
 $array_labels = array("January", "February", "March", "April", "May", "June", "July");
 

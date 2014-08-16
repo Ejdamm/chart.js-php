@@ -43,6 +43,11 @@ abstract class ChartJS
      */
     protected $_attributes = array();
 
+    /**
+     * @var array Default colors
+     */
+    protected static $_defaultColors = array('fill' => 'rgba(220,220,220,0.2)', 'stroke' => 'rgba(220,220,220,1)', 'point' => 'rgba(220,220,220,1)', 'pointStroke' => '#fff');
+
 
     /**
      * Add label(s)
@@ -177,12 +182,58 @@ abstract class ChartJS
     protected function _renderData()
     {
         $array_data = array('labels' => array(), 'datasets' => array());
+        $i = 0;
         foreach ($this->_datasets as $line) {
+
+            $this->_completeColors($line['options'], $i);
+
             $array_data['datasets'][] = $line['options'] + array('data' => $line['data']);
+            $i++;
         }
 
         $array_data['labels'] = $this->_labels;
 
         return ' data-data=\'' . json_encode($array_data) . '\'';
+    }
+
+    /**
+     * Set default colors
+     * @param array $defaultColors
+     */
+    public static function setDefaultColors(array $defaultColors)
+    {
+        self::$_defaultColors = $defaultColors;
+    }
+
+    /**
+     * @param array $color
+     */
+    public static function addDefaultColor(array $color)
+    {
+        if (!empty($color['fill']) && !empty($color['stroke']) && !empty($color['point']) && !empty($color['pointStroke'])) {
+            self::$_defaultColors[] = $color;
+        } else {
+            trigger_error('Color is missing to add this theme (need fill, stroke, point and pointStroke) : color not added', E_USER_WARNING);
+        }
+    }
+
+    protected function _completeColors(&$options, &$i)
+    {
+        if (empty(static::$_defaultColors[$i])) {
+            $i = 0;
+        }
+        $colors = static::$_defaultColors[$i];
+
+        foreach (static::$_colorsRequired as $name) {
+            if (empty($options[$name])) {
+                $shortName = str_replace('Color', '', $name);
+
+                if (empty($colors[$shortName])) {
+                    $shortName = static::$_colorsReplacement[$shortName];
+                }
+
+                $options[$name] = $colors[$shortName];
+            }
+        }
     }
 }
