@@ -12,7 +12,8 @@ This small PHP wrapper use `data-attributes` to load chart with Chart.js with le
 * Line
 * Bar
 * Radar
-* Other charts are coming
+* Polar Area
+* Pie & Doughnut
 
 
 ## How to use
