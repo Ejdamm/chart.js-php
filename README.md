@@ -23,14 +23,12 @@ Include Chart.js and chart.js-php.js before the end of your body (change src acc
 
 Load ChartJS-PHP classes or use an autoloader
 ```php
-<?php
 require 'class/ChartJS.php';
 require 'class/ChartJS_Line.php';
 ```
 
 Then, create your charts using PHP. 
 ```php
-<?php
 $Line = new ChartJS_Line('example', 500, 500);
 $Line->addLine(array(1, 2, 3, 4));
 $Line->addLabels(array('A label', 'Another', 'Another one', 'The last one'));
@@ -44,7 +42,7 @@ Finally, load these charts with a small piece of javascript when your document i
 ```js
 // Pure JS document.ready
 (function() {
-loadChartJsPhp();
+  loadChartJsPhp();
 })();
 ```
 
