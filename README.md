@@ -5,7 +5,7 @@ A PHP wrapper for nnnick/Chart.js
 
 When using a lot of charts in a project, we need to write a lot of code. 
 
-This small PHP wrapper use `data-attributes` to load chart with Chart.js
+This small PHP wrapper use `data-attributes` to load chart with Chart.js with less code.
 
 
 ## Charts implemented
