@@ -46,7 +46,7 @@ abstract class ChartJS
     /**
      * @var array Default colors
      */
-    protected static $_defaultColors = array('fill' => 'rgba(220,220,220,0.2)', 'stroke' => 'rgba(220,220,220,1)', 'point' => 'rgba(220,220,220,1)', 'pointStroke' => '#fff');
+    protected static $_defaultColors = array(array('fill' => 'rgba(220,220,220,0.2)', 'stroke' => 'rgba(220,220,220,1)', 'point' => 'rgba(220,220,220,1)', 'pointStroke' => '#fff'));
 
 
     /**
