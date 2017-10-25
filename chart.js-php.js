@@ -6,8 +6,6 @@ function loadChartJsPhp() {
 	// Getting all chart.js canvas
 	var elements = document.querySelectorAll("[data-chartjs]");
 
-    console.log(elements);
-
 	// Looping every canvas
 	for (var i in elements)
 	{
@@ -25,8 +23,9 @@ function loadChartJsPhp() {
 		var htmldata = canvas.dataset;
 		var data = JSON.parse(htmldata.data);
 		var type = htmldata.chartjs;
+		var config = {type:type, data:data};
 
 		// Creating chart and saving for later use
-		ChartJSPHP[id] = new Chart(ctx)[type](data);
+		ChartJSPHP[id] = new Chart(ctx, config);
 	}
 };

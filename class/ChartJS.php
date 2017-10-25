@@ -112,7 +112,7 @@ abstract class ChartJS
 
         $attributes = $this->_renderAttributes();
 
-        $canvas = '<canvas id="' . $this->_id . '" data-chartjs="' . $this->_type . '"' . $height . $width . $attributes . $data . $options . '></canvas>';
+        $canvas = '<canvas id="' . $this->_id . '" data-chartjs="' . lcfirst($this->_type) . '"' . $height . $width . $attributes . $data . $options . '></canvas>';
 
         return $canvas;
     }
