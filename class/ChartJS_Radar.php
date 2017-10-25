@@ -2,9 +2,9 @@
 
 class ChartJS_Radar extends ChartJS
 {
-    protected $_type = 'Radar';
-    protected static $_colorsRequired = array('fillColor', 'strokeColor', 'pointColor', 'pointStrokeColor', 'pointHighlightFill', 'pointHighlightStroke');
-    protected static $_colorsReplacement = array('pointHighlightFill' => 'point', 'pointHighlightStroke' => 'pointStroke');
+    protected $_type = 'radar';
+    protected static $_colorsRequired = array('backgroundColor', 'borderColor', 'pointBackgroundColor', 'pointBorderColor', 'pointHoverBackgroundColor', 'pointHoverBorderColor');
+    protected static $_colorsReplacement = array('pointHoverBackground' => 'pointBackground', 'pointHoverBorder' => 'pointBorder');
 
     /**
      * Add a set of data
@@ -15,7 +15,7 @@ class ChartJS_Radar extends ChartJS
     public function addRadar($data = array(), $options = array(), $name = null)
     {
         if (!$name) {
-            $name = count($this->_datasets) + 1;
+            $name = count($this->_datasets);
         }
         $this->_datasets[$name]['data'] = $data;
         $this->_datasets[$name]['options'] = $options;

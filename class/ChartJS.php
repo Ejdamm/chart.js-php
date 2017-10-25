@@ -46,7 +46,7 @@ abstract class ChartJS
     /**
      * @var array Default colors
      */
-    protected static $_defaultColors = array(array('fill' => 'rgba(220,220,220,0.2)', 'stroke' => 'rgba(220,220,220,1)', 'point' => 'rgba(220,220,220,1)', 'pointStroke' => '#fff'));
+    protected static $_defaultColors = array(array('background' => 'rgba(220,220,220,0.2)', 'border' => 'rgba(220,220,220,1)', 'pointBackground' => 'rgba(220,220,220,1)', 'pointBorder' => '#fff'));
 
 
     /**
@@ -112,7 +112,7 @@ abstract class ChartJS
 
         $attributes = $this->_renderAttributes();
 
-        $canvas = '<canvas id="' . $this->_id . '" data-chartjs="' . lcfirst($this->_type) . '"' . $height . $width . $attributes . $data . $options . '></canvas>';
+        $canvas = '<canvas id="' . $this->_id . '" data-chartjs="' . $this->_type . '"' . $height . $width . $attributes . $data . $options . '></canvas>';
 
         return $canvas;
     }
@@ -182,7 +182,7 @@ abstract class ChartJS
     protected function _renderData()
     {
         $array_data = array('labels' => array(), 'datasets' => array());
-        $i = 0;
+	$i = 0;
         foreach ($this->_datasets as $line) {
 
             $this->_completeColors($line['options'], $i);
@@ -210,10 +210,10 @@ abstract class ChartJS
      */
     public static function addDefaultColor(array $color)
     {
-        if (!empty($color['fill']) && !empty($color['stroke']) && !empty($color['point']) && !empty($color['pointStroke'])) {
+        if (!empty($color['background']) && !empty($color['border']) && !empty($color['pointBackground']) && !empty($color['pointBorder'])) {
             self::$_defaultColors[] = $color;
         } else {
-            trigger_error('Color is missing to add this theme (need fill, stroke, point and pointStroke) : color not added', E_USER_WARNING);
+            trigger_error('Color is missing to add this theme (need background, border, pointBackground and pointBorder) : color not added', E_USER_WARNING);
         }
     }
 

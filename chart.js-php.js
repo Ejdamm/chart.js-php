@@ -16,7 +16,9 @@ function loadChartJsPhp() {
 
 		// Getting values in data attributes
 		var htmldata = canvas.dataset;
+		console.log(htmldata);
 		var data = JSON.parse(htmldata.data);
+		console.log(data);
 		var type = htmldata.chartjs;
 		var config = {type:type, data:data};
 

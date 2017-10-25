@@ -2,9 +2,9 @@
 
 class ChartJS_Pie extends ChartJS
 {
-    protected $_type = 'Pie';
-    protected static $_colorsRequired = array('color', 'highlight');
-    protected static $_colorsReplacement = array('color' => 'fill', 'highlight' => 'stroke');
+    protected $_type = 'pie';
+    protected static $_colorsRequired = array('backgroundColor', 'borderColor', 'hoverBackgroundColor', 'hoverBorderColor');
+    protected static $_colorsReplacement = array('hoverBackground' => 'pointBackground', 'hoverBorder' => 'pointBorder');
 
     /**
      * Add a set of data
@@ -12,31 +12,34 @@ class ChartJS_Pie extends ChartJS
      * @param array $options
      * @param null $name Name cas be use to change data / options later
      */
-    public function addPart($value, $options = array(), $name = null)
+    public function addParts($data = array(), $options = array(), $name = null)
     {
         if (!$name) {
-            $name = count($this->_datasets) + 1;
+            $name = count($this->_datasets);
         }
-        $this->_datasets[$name]['value'] = $value;
+        $this->_datasets[$name]['data'] = $data;
         $this->_datasets[$name]['options'] = $options;
     }
 
-    /**
-     * Prepare data (dataset and labels) for the PolarArea
-     */
-    protected function _renderData()
+    protected function _completeColors(&$options, &$i)
     {
-        $array_data = array();
-        $i = 0;
+        $j = 0;
+        foreach ($this->_datasets[$i]['data'] as $value) {
+            $count = count(static::$_defaultColors);
+            $colors = static::$_defaultColors[$j++ % $count];
 
-        foreach ($this->_datasets as $part) {
+            foreach (static::$_colorsRequired as $name) {
+                if (empty($options[$name])) {
+                    $options[$name] = array();
+                }
+                $shortName = str_replace('Color', '', $name);
 
-            $this->_completeColors($part['options'], $i);
-
-            $array_data[] = $part['options'] + array('label' => $this->_labels[$i]) + array('value' => $part['value']);
-            $i++;
+                if (empty($colors[$shortName])) {
+                    $shortName = static::$_colorsReplacement[$shortName];
+                }
+                $options[$name][] = $colors[$shortName];
+            }
         }
-
-        return ' data-data=\'' . json_encode($array_data) . '\'';
     }
+
 }

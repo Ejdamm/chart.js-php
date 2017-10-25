@@ -2,9 +2,9 @@
 
 class ChartJS_Bar extends ChartJS
 {
-    protected $_type = 'Bar';
-    protected static $_colorsRequired = array('fillColor', 'strokeColor', 'highlightFill', 'highlightStroke');
-    protected static $_colorsReplacement = array('highlightFill' => 'fill', 'highlightStroke' => 'stroke');
+    protected $_type = 'bar';
+    protected static $_colorsRequired = array('backgroundColor', 'borderColor', 'hoverBackgroundColor', 'hoverBorderColor');
+    protected static $_colorsReplacement = array('hoverBackground' => 'background', 'hoverBorder' => 'border');
 
     /**
      * Add a set of data
@@ -15,7 +15,7 @@ class ChartJS_Bar extends ChartJS
     public function addBars($data = array(), $options = array(), $name = null)
     {
         if (!$name) {
-            $name = count($this->_datasets) + 1;
+            $name = count($this->_datasets);
         }
         $this->_datasets[$name]['data'] = $data;
         $this->_datasets[$name]['options'] = $options;

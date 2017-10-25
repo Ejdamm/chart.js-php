@@ -7,13 +7,13 @@ require 'class/ChartJS_PolarArea.php';
 require 'class/ChartJS_Pie.php';
 require 'class/ChartJS_Doughnut.php';
 
-ChartJS::setDefaultColors(array(array('fill' => '#f2b21a', 'stroke' => '#e5801d', 'point' => '#e5801d', 'pointStroke' => '#e5801d')));
-ChartJS::addDefaultColor(array('fill' => 'rgba(28,116,190,.8)', 'stroke' => '#1c74be', 'point' => '#1c74be', 'pointStroke' => '#1c74be'));
-ChartJS::addDefaultColor(array('fill' => 'rgba(212,41,31,.7)', 'stroke' => '#d4291f', 'point' => '#d4291f', 'pointStroke' => '#d4291f'));
-ChartJS::addDefaultColor(array('fill' => '#dc693c', 'stroke' => '#ff0000', 'point' => '#ff0000', 'pointStroke' => '#ff0000'));
-ChartJS::addDefaultColor(array('fill' => 'rgba(46,204,113,.8)', 'stroke' => '#2ecc71', 'point' => '#2ecc71', 'pointStroke' => '#2ecc71'));
+ChartJS::setDefaultColors(array(array('background' => '#f2b21a', 'border' => '#e5801d', 'pointBackground' => '#e5801d', 'pointBorder' => '#e5801d')));
+ChartJS::addDefaultColor(array('background' => 'rgba(28,116,190,.8)', 'border' => '#1c74be', 'pointBackground' => '#1c74be', 'pointBorder' => '#1c74be'));
+//ChartJS::addDefaultColor(array('background' => 'rgba(212,41,31,.7)', 'stroke' => '#d4291f', 'point' => '#d4291f', 'pointStroke' => '#d4291f'));
+//ChartJS::addDefaultColor(array('background' => '#dc693c', 'stroke' => '#ff0000', 'point' => '#ff0000', 'pointStroke' => '#ff0000'));
+//ChartJS::addDefaultColor(array('background' => 'rgba(46,204,113,.8)', 'stroke' => '#2ecc71', 'point' => '#2ecc71', 'pointStroke' => '#2ecc71'));
 
-$array_values = array(array(65, 59, 80, 81, 56, 55, 40), array(28, 48, 40, 19, 86, 27, 90));
+$array_values = array(array(28, 48, 40, 19, 86, 27, 90), array(65, 59, 80, 81, 56, 55, 40));
 $array_labels = array("January", "February", "March", "April", "May", "June", "July");
 
 $Line = new ChartJS_Line('example_line', 500, 500);
@@ -32,27 +32,15 @@ $Radar->addRadar($array_values[1]);
 $Radar->addLabels($array_labels);
 
 $PolarArea = new ChartJS_PolarArea('example_polararea', 500, 500);
-$PolarArea->addSegment(65);
-$PolarArea->addSegment(59);
-$PolarArea->addSegment(80);
-$PolarArea->addSegment(81);
-$PolarArea->addSegment(56);
-$PolarArea->addSegment(55);
-$PolarArea->addSegment(40);
+$PolarArea->addSegments($array_values[0]);
 $PolarArea->addLabels($array_labels);
 
 $Pie = new ChartJS_Pie('example_pie', 500, 500);
-$Pie->addPart(65);
-$Pie->addPart(59);
-$Pie->addPart(80);
-$Pie->addPart(81);
+$Pie->addparts($array_values[0]);
 $Pie->addLabels($array_labels);
 
 $Doughnut = new ChartJS_Doughnut('example_doughnut', 500, 500);
-$Doughnut->addPart(65);
-$Doughnut->addPart(59);
-$Doughnut->addPart(80);
-$Doughnut->addPart(81);
+$Doughnut->addparts($array_values[0]);
 $Doughnut->addLabels($array_labels);
 
 ?><!DOCTYPE html>
