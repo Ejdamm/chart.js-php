@@ -7,13 +7,8 @@ function loadChartJsPhp() {
 	var elements = document.querySelectorAll("[data-chartjs]");
 
 	// Looping every canvas
-	for (var i in elements)
+	for (var canvas of elements)
 	{
-		// Escaping length and item in the loop
-		if (i === 'length' || i === 'item') {
-			continue;
-		}
-		var canvas = elements[i];
 		var id = canvas.id;
 
 		// Getting ctx from canvas
