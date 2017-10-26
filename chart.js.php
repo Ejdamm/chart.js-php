@@ -7,19 +7,19 @@ require 'class/ChartJS_PolarArea.php';
 require 'class/ChartJS_Pie.php';
 require 'class/ChartJS_Doughnut.php';
 
-ChartJS::setDefaultColors(array(array('background' => '#f2b21a', 'border' => '#e5801d', 'pointBackground' => '#e5801d', 'pointBorder' => '#e5801d')));
-ChartJS::addDefaultColor(array('background' => 'rgba(28,116,190,.8)', 'border' => '#1c74be', 'pointBackground' => '#1c74be', 'pointBorder' => '#1c74be'));
 
-$array_values = array(array(28, 48, 40, 19, 86, 27, 90), array(65, 59, 80, 81, 56, 55, 40));
-$array_labels = array("January", "February", "March", "April", "May", "June", "July");
+$data = array(array(28, 48, 40, 19, 86, 27, 90), array(65, 59, 80, 81, 56, 55, 40));
+$labels = array("January", "February", "March", "April", "May", "June", "July");
+$colors = array(array('backgroundColor' => 'rgba(28,116,190,.8)', 'borderColor' => '#1c74be', 'pointBackgroundColor' => '#1c74be', 'pointBorderColor' => '#1c74be'),
+          array('backgroundColor' => '#f2b21a', 'borderColor' => '#e5801d', 'pointBackgroundColor' => '#e5801d', 'pointBorderColor' => '#e5801d'));
+
 //There is a bug in Chart.js that ignores canvas width/height if responsive != false
 $options = array('responsive' => false);
 
 $Line = new ChartJS_Line('example_line', 500, 500, $options);
-$Line->addLine($array_values[0]);
-$Line->addLine($array_values[1]);
-$Line->addLabels($array_labels);
-
+$Line->addLine($data[0], $colors[0]);
+$Line->addLine($data[1], $colors[1]);
+$Line->addLabels($labels);
 
 ?><!DOCTYPE html>
 <html>

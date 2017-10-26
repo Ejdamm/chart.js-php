@@ -44,9 +44,9 @@ abstract class ChartJS
     protected $_attributes = array();
 
     /**
-     * @var array Default colors
+     * @var array colors
      */
-    protected static $_defaultColors = array(array('background' => 'rgba(220,220,220,0.2)', 'border' => 'rgba(220,220,220,1)', 'pointBackground' => 'rgba(220,220,220,1)', 'pointBorder' => '#fff'));
+    protected $_colors = array();
 
 
     /**
@@ -175,66 +175,19 @@ abstract class ChartJS
         return ' data-options=\'' . json_encode($this->_options) . '\'';
     }
 
-
     /**
      * Prepare data (labels and dataset) for the chart
      * @return string
      */
     protected function _renderData()
     {
-        $array_data = array('labels' => array(), 'datasets' => array());
+        $array_data = array('labels' => $this->_labels, 'datasets' => array());
 	$i = 0;
         foreach ($this->_datasets as $line) {
-
-            $this->_completeColors($line['options'], $i);
-
-            $array_data['datasets'][] = $line['options'] + array('data' => $line['data']);
+            $array_data['datasets'][] = $line['colors'] + array('data' => $line['data']);
             $i++;
         }
 
-        $array_data['labels'] = $this->_labels;
-
         return ' data-data=\'' . json_encode($array_data) . '\'';
-    }
-
-    /**
-     * Set default colors
-     * @param array $defaultColors
-     */
-    public static function setDefaultColors(array $defaultColors)
-    {
-        self::$_defaultColors = $defaultColors;
-    }
-
-    /**
-     * @param array $color
-     */
-    public static function addDefaultColor(array $color)
-    {
-        if (!empty($color['background']) && !empty($color['border']) && !empty($color['pointBackground']) && !empty($color['pointBorder'])) {
-            self::$_defaultColors[] = $color;
-        } else {
-            trigger_error('Color is missing to add this theme (need background, border, pointBackground and pointBorder) : color not added', E_USER_WARNING);
-        }
-    }
-
-    protected function _completeColors(&$options, &$i)
-    {
-        if (empty(static::$_defaultColors[$i])) {
-            $i = 0;
-        }
-        $colors = static::$_defaultColors[$i];
-
-        foreach (static::$_colorsRequired as $name) {
-            if (empty($options[$name])) {
-                $shortName = str_replace('Color', '', $name);
-
-                if (empty($colors[$shortName])) {
-                    $shortName = static::$_colorsReplacement[$shortName];
-                }
-
-                $options[$name] = $colors[$shortName];
-            }
-        }
     }
 }
