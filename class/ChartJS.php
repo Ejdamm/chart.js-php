@@ -170,7 +170,7 @@ abstract class ChartJS
     protected function _renderOptions()
     {
         if (empty($this->_options)) {
-            return '';
+            return ' data-options=\'null\'';
         }
         return ' data-options=\'' . json_encode($this->_options) . '\'';
     }
