@@ -1,19 +1,20 @@
 Chart.js-PHP
 ============
 
-A PHP wrapper for nnnick/Chart.js
+A PHP wrapper for [chartjs/Chart.js](https://github.com/chartjs/Chart.js)
 
 When using a lot of charts in a project, we need to write a lot of code. 
 
 This small PHP wrapper use `data-attributes` to load chart with Chart.js with less code.
 
+This project is an expansion of [HugoHeneault's](https://github.com/HugoHeneault/Chart.js-PHP) repository
 
 ## Charts implemented
 * Line
-* Bar
-* Radar
-* Polar Area
-* Pie & Doughnut
+* ~~~Bar~~~
+* ~~~Radar~~~
+* ~~~Polar Area~~~
+* ~~~Pie & Doughnut~~~
 
 
 ## How to use
@@ -54,9 +55,6 @@ Finally, load these charts with a small piece of javascript when your document i
   loadChartJsPhp();
 })();
 ```
-
-## Advanced use (colors, etc)
-Have a look at the wiki (soon)
 
 ## Full example
 ```php
