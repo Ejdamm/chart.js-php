@@ -9,15 +9,13 @@ class ChartJS_Line extends ChartJS
     /**
      * Add a set of data
      * @param array $data
-     * @param array $options
-     * @param null $name Name cas be use to change data / options later
+     * @param null $name Name can be use to change data later
      */
-    public function addLine($data = array(), $options = array(), $name = null)
+    public function addLine($data = array(), $name = null)
     {
         if (!$name) {
             $name = count($this->_datasets);
         }
         $this->_datasets[$name]['data'] = $data;
-        $this->_datasets[$name]['options'] = $options;
     }
 }

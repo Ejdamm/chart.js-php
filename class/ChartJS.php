@@ -77,7 +77,7 @@ abstract class ChartJS
         $this->_datasets += $dataset;
     }
 
-    public function __construct($id = null, $width = '', $height = '', $otherAttributes = array())
+    public function __construct($id = null, $width = '', $height = '', $options = array(), $otherAttributes = array())
     {
         if (!$id) {
             $id = uniqid('chartjs_', true);
@@ -86,6 +86,7 @@ abstract class ChartJS
         $this->_id = $id;
         $this->_width = $width;
         $this->_height = $height;
+        $this->_options = $options;
 
         // Always save otherAttributes as array
         if ($otherAttributes && !is_array($otherAttributes)) {

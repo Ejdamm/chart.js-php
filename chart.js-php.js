@@ -16,11 +16,10 @@ function loadChartJsPhp() {
 
 		// Getting values in data attributes
 		var htmldata = canvas.dataset;
-		console.log(htmldata);
-		var data = JSON.parse(htmldata.data);
-		console.log(data);
 		var type = htmldata.chartjs;
-		var config = {type:type, data:data};
+		var data = JSON.parse(htmldata.data);
+		var options = JSON.parse(htmldata.options);
+		var config = {type:type, data:data, options:options};
 
 		// Creating chart and saving for later use
 		ChartJSPHP[id] = new Chart(ctx, config);
