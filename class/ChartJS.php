@@ -59,7 +59,6 @@ abstract class ChartJS
         if ($reset) {
             $this->_labels = array();
         }
-
         $this->_labels = $this->_labels + $labels;
     }
 
@@ -77,7 +76,7 @@ abstract class ChartJS
         $this->_datasets += $dataset;
     }
 
-    public function __construct($id = null, $width = '', $height = '', $options = array(), $otherAttributes = array())
+    public function __construct($id = null, $width = '', $height = '', $labels = array(), $options = array(), $otherAttributes = array())
     {
         if (!$id) {
             $id = uniqid('chartjs_', true);
@@ -86,6 +85,7 @@ abstract class ChartJS
         $this->_id = $id;
         $this->_width = $width;
         $this->_height = $height;
+        $this->_labels = $labels;
         $this->_options = $options;
 
         // Always save otherAttributes as array
