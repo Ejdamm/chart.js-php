@@ -16,8 +16,8 @@ $colors = array(array('backgroundColor' => 'rgba(28,116,190,.8)', 'borderColor' 
 $options = array('responsive' => false);
 
 $Line = new ChartJS_Line('example_line', 500, 500, $labels, $options);
-$Line->addLine($data[0], $colors[0]);
-$Line->addLine($data[1], $colors[1]);
+$Line->addLine($data[0], $colors[0], "legend1");
+$Line->addLine($data[1], $colors[1], "legend2");
 
 ?><!DOCTYPE html>
 <html>

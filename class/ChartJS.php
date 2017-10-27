@@ -44,12 +44,6 @@ abstract class ChartJS
     protected $_attributes = array();
 
     /**
-     * @var array colors
-     */
-    protected $_colors = array();
-
-
-    /**
      * Add label(s)
      * @param array $labels
      * @param bool $reset
@@ -184,8 +178,8 @@ abstract class ChartJS
         $array_data = array('labels' => $this->_labels, 'datasets' => array());
 	$i = 0;
         foreach ($this->_datasets as $line) {
-            $array_data['datasets'][] = $line['colors'] + array('data' => $line['data']);
-            $i++;
+            $array_data['datasets'][] = array('label' => $line['legend']) + $line['colors'] + array('data' => $line['data']);
+	    $i++;
         }
 
         return ' data-data=\'' . json_encode($array_data) . '\'';
