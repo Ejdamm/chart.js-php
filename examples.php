@@ -2,33 +2,61 @@
 require 'ChartJS.php';
 
 
-$data = array(array(28, 48, 40, 19, 86, 27, 90), array(65, 59, 80, 81, 56, 55, 40));
+$data = array(
+            array(28, 48, 40, 19, 86, 27, 90),
+            array(65, 59, 80, 81, 56, 55, 40)
+        );
 $labels = array("January", "February", "March", "April", "May", "June", "July");
-$colors = array(array('backgroundColor' => 'rgba(28,116,190,.8)', 'borderColor' => 'blue'),
-          array('backgroundColor' => '#f2b21a', 'borderColor' => '#e5801d'));
+$colors = array(
+              array('backgroundColor' => 'rgba(28,116,190,.8)', 'borderColor' => 'blue'),
+              array('backgroundColor' => '#f2b21a', 'borderColor' => '#e5801d'),
+              array('backgroundColor' => array('blue', 'purple', 'red', 'black', 'brown', 'pink', 'green'))
+          );
+
 //There is a bug in Chart.js that ignores canvas width/height if responsive is not set to false
 $options = array('responsive' => false);
 
-$Line = new ChartJS('line', 'example_line', 500, 500, $labels, $options);
+//html attributes fot the canvas element
+$attributes = array('id' => 'example', 'width' => 500, 'height' => 500, 'style' => 'display:inline;');
+
+
+/*
+ * Create charts
+ *
+ */
+
+$attributes['id'] = 'example_line';
+$Line = new ChartJS('line', $labels, $options, $attributes);
 $Line->addDataset($data[0], $colors[0], "Legend 1");
 $Line->addDataset($data[1], $colors[1], "Legend 2");
 
-$Bar = new ChartJS('bar', 'example_bar', 500, 500, $labels, $options);
+$attributes['id'] = 'example_bar';
+$Bar = new ChartJS('bar', $labels, $options, $attributes);
 $Bar->addDataset($data[0], $colors[1], "Legend 1");
-$Bar->addDataset($data[1], array('backgroundColor' => array('blue', 'purple', 'red', 'black', 'brown', 'pink', 'green')), "Legend 2");
+$Bar->addDataset($data[1], $colors[2], "Legend 2");
 
-$Radar = new ChartJS('radar', 'example_radar', 500, 500, $labels, $options);
+$attributes['id'] = 'example_radar';
+$Radar = new ChartJS('radar', $labels, $options, $attributes);
 $Radar->addDataset($data[0], $colors[0], "Legend 1");
 $Radar->addDataset($data[1], $colors[1], "Legend 2");
 
-$PolarArea = new ChartJS('polarArea', 'example_polarArea', 500, 500, $labels, $options);
-$PolarArea->addDataset($data[0], array('backgroundColor' => array('blue', 'purple', 'red', 'black', 'brown', 'pink', 'green')));
+$attributes['id'] = 'example_polarArea';
+$PolarArea = new ChartJS('polarArea', $labels, $options, $attributes);
+$PolarArea->addDataset($data[0],  $colors[2]);
 
-$Pie = new ChartJS('pie', 'example_pie', 500, 500, $labels, $options, array('style' => 'display:inline;'));
-$Pie->addDataset($data[0], array('backgroundColor' => array('blue', 'purple', 'red', 'black', 'brown', 'pink', 'green')));
+$attributes['id'] = 'example_pie';
+$Pie = new ChartJS('pie', $labels, $options, $attributes);
+$Pie->addDataset($data[0], $colors[2]);
 
-$Doughnut = new ChartJS('doughnut', 'example_doughnut', 500, 500, $labels, $options, array('style' => 'display:inline;'));
-$Doughnut->addDataset($data[0], array('backgroundColor' => array('blue', 'purple', 'red', 'black', 'brown', 'pink', 'green')));
+$attributes['id'] = 'example_doughnut';
+$Doughnut = new ChartJS('doughnut', $labels, $options, $attributes);
+$Doughnut->addDataset($data[0], $colors[2]);
+
+
+/*
+ * Print charts
+ *
+ */
 
 ?><!DOCTYPE html>
 <html>
