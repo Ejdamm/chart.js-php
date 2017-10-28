@@ -1,6 +1,6 @@
 <?php
 
-abstract class ChartJS
+class ChartJS
 {
     /**
      * @var array chart data
@@ -44,38 +44,31 @@ abstract class ChartJS
     protected $_attributes = array();
 
     /**
-     * Add label(s)
-     * @param array $labels
-     * @param bool $reset
+     * Add a set of data
+     * @param array $data
+     * @param array $colors
+     * @param string $legend
+     * @param array $advanced
+     * @param null $name Name can be use to change data later
      */
-    public function addLabels(array $labels, $reset = false)
+    public function addDataset($data = array(), $colors = array(), $legend = '', $advanced = array(), $name = null)
     {
-        if ($reset) {
-            $this->_labels = array();
+        if (!$name) {
+            $name = count($this->_datasets);
         }
-        $this->_labels = $this->_labels + $labels;
+        $this->_datasets[$name]['data'] = $data;
+        $this->_datasets[$name]['colors'] = $colors;
+        $this->_datasets[$name]['legend'] = $legend;
+        $this->_datasets[$name]['advanced'] = $advanced;
     }
 
-    /**
-     * Add dataset
-     * @param $dataset
-     * @param $reset
-     */
-    public function addDataset($dataset, $reset)
-    {
-        if ($reset) {
-            $this->_datasets = array();
-        }
-
-        $this->_datasets += $dataset;
-    }
-
-    public function __construct($id = null, $width = '', $height = '', $labels = array(), $options = array(), $otherAttributes = array())
+    public function __construct($type = 'line', $id = null, $width = '', $height = '', $labels = array(), $options = array(), $otherAttributes = array())
     {
         if (!$id) {
             $id = uniqid('chartjs_', true);
         }
 
+	$this->_type = $type;
         $this->_id = $id;
         $this->_width = $width;
         $this->_height = $height;
