@@ -11,10 +11,10 @@ This project is an expansion of [HugoHeneault's](https://github.com/HugoHeneault
 
 ## Charts implemented
 * Line
-* ~~~Bar~~~
-* ~~~Radar~~~
-* ~~~Polar Area~~~
-* ~~~Pie & Doughnut~~~
+* Bar
+* Radar
+* Polar Area
+* Pie & Doughnut
 
 
 ## How to use
