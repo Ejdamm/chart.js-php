@@ -36,15 +36,12 @@ class ChartJS
      * @param array $advanced
      * @param null $name Name can be use to change data later
      */
-    public function addDataset($data = array(), $colors = array(), $legend = '', $advanced = array(), $name = null)
+    public function addDataset($dataset, $name = null)
     {
         if (!$name) {
             $name = count($this->_datasets);
         }
-        $this->_datasets[$name]['data'] = $data;
-        $this->_datasets[$name]['colors'] = $colors;
-        $this->_datasets[$name]['legend'] = $legend;
-        $this->_datasets[$name]['advanced'] = $advanced;
+        $this->_datasets[$name] = $dataset;
     }
 
     public function __construct($type = 'line', $labels = array(), $options = array(), $attributes = array())
@@ -117,15 +114,7 @@ class ChartJS
      */
     protected function _renderData()
     {
-        $array_data = array('labels' => $this->_labels, 'datasets' => array());
-	$i = 0;
-        foreach ($this->_datasets as $line) {
-            $array_data['datasets'][] = array('label' => $line['legend']) +
-					array('data' => $line['data']) +
-					$line['colors'] +
-					$line['advanced'];
-	    $i++;
-        }
+        $array_data = array('labels' => $this->_labels, 'datasets' => $this->_datasets);
 
         return ' data-data=\'' . json_encode($array_data) . '\'';
     }

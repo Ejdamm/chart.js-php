@@ -19,6 +19,13 @@ $options = array('responsive' => false);
 //html attributes fot the canvas element
 $attributes = array('id' => 'example', 'width' => 500, 'height' => 500, 'style' => 'display:inline;');
 
+$datasets = array(
+                array('data' => $data[0], 'label' => "Legend1") + $colors[0],
+                array('data' => $data[1], 'label' => "Legend2") + $colors[1],
+                array('data' => $data[0], 'label' => "Legend1") + $colors[1],
+                array('data' => $data[1], 'label' => "Legend2") + $colors[2],
+                array('data' => $data[0]) + $colors[2],
+            );
 
 /*
  * Create charts
@@ -27,30 +34,30 @@ $attributes = array('id' => 'example', 'width' => 500, 'height' => 500, 'style' 
 
 $attributes['id'] = 'example_line';
 $Line = new ChartJS('line', $labels, $options, $attributes);
-$Line->addDataset($data[0], $colors[0], "Legend 1");
-$Line->addDataset($data[1], $colors[1], "Legend 2");
+$Line->addDataset($datasets[0]);
+$Line->addDataset($datasets[1]);
 
 $attributes['id'] = 'example_bar';
 $Bar = new ChartJS('bar', $labels, $options, $attributes);
-$Bar->addDataset($data[0], $colors[1], "Legend 1");
-$Bar->addDataset($data[1], $colors[2], "Legend 2");
+$Bar->addDataset($datasets[2]);
+$Bar->addDataset($datasets[3]);
 
 $attributes['id'] = 'example_radar';
 $Radar = new ChartJS('radar', $labels, $options, $attributes);
-$Radar->addDataset($data[0], $colors[0], "Legend 1");
-$Radar->addDataset($data[1], $colors[1], "Legend 2");
+$Radar->addDataset($datasets[0]);
+$Radar->addDataset($datasets[1]);
 
 $attributes['id'] = 'example_polarArea';
 $PolarArea = new ChartJS('polarArea', $labels, $options, $attributes);
-$PolarArea->addDataset($data[0],  $colors[2]);
+$PolarArea->addDataset($datasets[4]);
 
 $attributes['id'] = 'example_pie';
 $Pie = new ChartJS('pie', $labels, $options, $attributes);
-$Pie->addDataset($data[0], $colors[2]);
+$Pie->addDataset($datasets[4]);
 
 $attributes['id'] = 'example_doughnut';
 $Doughnut = new ChartJS('doughnut', $labels, $options, $attributes);
-$Doughnut->addDataset($data[0], $colors[2]);
+$Doughnut->addDataset($datasets[4]);
 
 
 /*
