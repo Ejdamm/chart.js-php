@@ -178,7 +178,10 @@ abstract class ChartJS
         $array_data = array('labels' => $this->_labels, 'datasets' => array());
 	$i = 0;
         foreach ($this->_datasets as $line) {
-            $array_data['datasets'][] = array('label' => $line['legend']) + $line['colors'] + array('data' => $line['data']);
+            $array_data['datasets'][] = array('label' => $line['legend']) +
+					array('data' => $line['data']) +
+					$line['colors'] +
+					$line['advanced'];
 	    $i++;
         }
 

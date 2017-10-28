@@ -10,7 +10,7 @@ class ChartJS_Line extends ChartJS
      * @param array $colors
      * @param null $name Name can be use to change data later
      */
-    public function addLine($data = array(), $colors = array(), $legend = '', $name = null)
+    public function addLine($data = array(), $colors = array(), $legend = '', $advanced = array(), $name = null)
     {
         if (!$name) {
             $name = count($this->_datasets);
@@ -18,5 +18,6 @@ class ChartJS_Line extends ChartJS
         $this->_datasets[$name]['data'] = $data;
         $this->_datasets[$name]['colors'] = $colors;
         $this->_datasets[$name]['legend'] = $legend;
+        $this->_datasets[$name]['advanced'] = $advanced;
     }
 }
