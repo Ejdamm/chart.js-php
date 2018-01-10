@@ -24,7 +24,7 @@ Install ChartJS-PHP via composer
         {
             "type": "git",
             "url": "https://github.com/christof-b/chartjs-php"
-        }]
+        }],
     "require": {
         "christof-b/chartjs-php": "dev-master"
     }
@@ -76,7 +76,7 @@ $dataset = array(
     'borderColor' => '#e5801d',
     'label' => 'Legend'
 );
-$Line->addDataset($datasets);
+$Line->addDataset($dataset);
 
 ?><!DOCTYPE html>
 <html>
