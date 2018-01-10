@@ -4,15 +4,15 @@ A PHP wrapper for [chartjs/Chart.js](https://github.com/chartjs/Chart.js)
 This project is an expansion of [HugoHeneault's](https://github.com/HugoHeneault/Chart.js-PHP) repository
 
 ## How to use
-Include [js/Chart.js] and [js/driver.js] before the end of your body (change src according to your project)
+Include [js/Chart.js](js/Chart.js) and [js/driver.js](js/driver.js) before the end of your body (change src according to your project)
 ```html
 <html>
   <body>
     <!-- Your awesome project comes here -->
 
     <!-- And here are Chart.js and Chart.js-PHP -->
-    <script src="Chart.js"></script>
-    <script src="driver.js"></script>
+    <script src="js/Chart.js"></script>
+    <script src="js/driver.js"></script>
   </body>
 </html>
 ```
