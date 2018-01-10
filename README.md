@@ -4,7 +4,7 @@ A PHP wrapper for [chartjs/Chart.js](https://github.com/chartjs/Chart.js)
 This project is an expansion of [HugoHeneault's](https://github.com/HugoHeneault/Chart.js-PHP) repository
 
 ## How to use
-Include Chart.js and driver.js before the end of your body (change src according to your project)
+Include [js/Chart.js] and [js/driver.js] before the end of your body (change src according to your project)
 ```html
 <html>
   <body>
@@ -17,9 +17,9 @@ Include Chart.js and driver.js before the end of your body (change src according
 </html>
 ```
 
-Load ChartJS-PHP class
-```php
-require 'ChartJS.php';
+Install ChartJS-PHP via composer
+```shell
+composer install christof-b/chartjs-php
 ```
 
 Then, create your charts using PHP.
@@ -27,7 +27,7 @@ Then, create your charts using PHP.
 $labels = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
 $options = array();
 $attributes = array('id' => 'example', 'width' => 500, 'height' => 500);
-$Line = new ChartJS('line', $labels, $options, $attributes);
+$Line = new ChartJs\ChartJS('line', $labels, $options, $attributes);
 
 $dataset = array(
     'data' => array(8, 7, 8, 9, 6),
@@ -53,7 +53,8 @@ Finally, load these charts with a small piece of javascript when your document i
 ## Full example
 ```php
 <?php
-require 'ChartJS.php';
+require 'vendor/autoload.php';
+use ChartJs\ChartJS;
 
 $labels = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
 $options = array('responsive' => false);
