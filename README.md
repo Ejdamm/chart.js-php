@@ -18,8 +18,17 @@ Include [js/Chart.js](js/Chart.js) and [js/driver.js](js/driver.js) before the e
 ```
 
 Install ChartJS-PHP via composer
-```shell
-composer install christof-b/chartjs-php
+```json
+{
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/christof-b/chartjs-php"
+        }]
+    "require": {
+        "christof-b/chartjs-php": "dev-master"
+    }
+}
 ```
 
 Then, create your charts using PHP.
@@ -78,8 +87,8 @@ $Line->addDataset($datasets);
     <?php
       echo $Line;
     ?>
-    <script src="Chart.js"></script>
-    <script src="driver.js"></script>
+    <script src="vendor/christof-b/chartjs-php/js/Chart.js"></script>
+    <script src="vendor/christof-b/chartjs-php/js/driver.js"></script>
     <script>
       (function() {
         loadChartJsPhp();
