@@ -1,5 +1,6 @@
 <?php
-require 'ChartJS.php';
+require '../vendor/autoload.php';
+use ChartJs\ChartJS;
 
 
 $data = array(
@@ -92,8 +93,8 @@ echo $PolarArea;
 echo $Pie. $Doughnut;
 ?>
 
-<script src="Chart.js"></script>
-<script src="driver.js"></script>
+<script src="../js/Chart.js"></script>
+<script src="../js/driver.js"></script>
 <script>
     (function () {
         loadChartJsPhp();
