@@ -23,10 +23,10 @@ Install ChartJS-PHP via composer
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/christof-b/chartjs-php"
+            "url": "https://github.com/Ejdamm/Chart.js-PHP"
         }],
     "require": {
-        "christof-b/chartjs-php": "dev-master"
+        "Ejdamm/Chart.js-PHP": "dev-master"
     }
 }
 ```
@@ -87,8 +87,8 @@ $Line->addDataset($dataset);
     <?php
       echo $Line;
     ?>
-    <script src="vendor/christof-b/chartjs-php/js/Chart.js"></script>
-    <script src="vendor/christof-b/chartjs-php/js/driver.js"></script>
+    <script src="vendor/Ejdamm/Chart.js-PHP/js/Chart.js"></script>
+    <script src="vendor/Ejdamm/Chart.js-PHP/js/driver.js"></script>
     <script>
       (function() {
         loadChartJsPhp();
@@ -105,4 +105,4 @@ Full documentation is available at [Chart.js](http://www.chartjs.org/docs/latest
 If you are going to use time axis you need either to include Moment.js or Chart.bundle.js instead of Chart.js to your project. Chart.bundle.js consists of both Chart.js and Moment.js (which is needed for time axis).
 
 ## Contributing
-Do not hesitate to edit or improve my code with bugfix and new functionnalities!
+Do not hesitate to edit or improve my code with bugfix and new functionalities!

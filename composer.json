@@ -1,6 +1,6 @@
 {
-  "name": "christof-b/chartjs-php",
-  "homepage": "https://github.com/christof-b/Chart.js-PHP",
+  "name": "Ejdamm/Chart.js-PHP",
+  "homepage": "https://github.com/Ejdamm/Chart.js-PHP",
   "license": "MIT",
   "description": "PHP Wrapper for Chart.js.",
   "authors": [
