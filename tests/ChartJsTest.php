@@ -28,7 +28,7 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
     {
         $chart = new ChartJS();
     }
-    
+
     /**
      * @covers ::renderCanvas
      * @depends testConstruct
@@ -39,7 +39,7 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
         $html = $chart->renderCanvas();
         $this->assertNotFalse(preg_match(self::HTML_TAG_PATTERN,$html));
     }
-    
+
     /**
      * @covers ::__toString
      * @depends testConstruct
@@ -55,9 +55,9 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
         ob_end_clean();
         $this->assertEquals($html,$string);
     }
-    
+
     /**
-     * @covers ::__toString
+     * @covers ::renderCanvas
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
@@ -70,9 +70,9 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
           'This test has not been implemented yet.'
         );
     }
-    
+
     /**
-     * @covers ::__toString
+     * @covers ::renderCanvas
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
@@ -85,30 +85,25 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
           'This test has not been implemented yet.'
         );
     }
-    
+
     /**
-     * @covers ::__toString
+     * @covers ::renderCanvas
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
     public function testCanvasContainsType()
     {
-		$testType = 'test';
-		
+        $testType = 'test';
         $chart = new ChartJS($testType);
         $html = $chart->renderCanvas();
-        
         $matches = [];
-        
         $this->assertNotFalse(preg_match(self::DATA_TYPE_PATTERN,$html,$matches));
-        
         $type = $matches[1];
-        
         $this->assertEquals($type,$testType);
     }
-    
+
     /**
-     * @covers ::__toString
+     * @covers ::renderCanvas
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
@@ -120,11 +115,10 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
         $this->markTestIncomplete(
           'This test has not been implemented yet.'
         );
-        
     }
-    
+
     /**
-     * @covers ::__toString
+     * @covers ::renderCanvas
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
@@ -136,7 +130,6 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
         $this->markTestIncomplete(
           'This test has not been implemented yet.'
         );
-        
     }
 
 }
