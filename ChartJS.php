@@ -28,25 +28,9 @@ class ChartJS
      */
     protected $_attributes = array();
 
-    /**
-     * Add a set of data
-     * @param array $data
-     * @param array $colors
-     * @param string $legend
-     * @param array $advanced
-     * @param null $name Name can be use to change data later
-     */
-    public function addDataset($dataset, $name = null)
-    {
-        if (!$name) {
-            $name = count($this->_datasets);
-        }
-        $this->_datasets[$name] = $dataset;
-    }
-
     public function __construct($type = 'line', $labels = array(), $options = array(), $attributes = array())
     {
-	$this->_type = $type;
+        $this->_type = $type;
         $this->_labels = $labels;
         $this->_options = $options;
 
@@ -70,12 +54,23 @@ class ChartJS
     {
         $data = $this->_renderData();
         $options = $this->_renderOptions();
-
         $attributes = $this->_renderAttributes();
-
         $canvas = "<canvas$attributes data-chartjs=\"" . $this->_type . "\" $data $options></canvas>";
 
         return $canvas;
+    }
+
+    /**
+     * Add a set of data
+     * @param array $dataset
+     * @param null $name Name can be used to identify a dataset
+     */
+    public function addDataset($dataset, $name = null)
+    {
+        if (!$name) {
+            $name = count($this->_datasets);
+        }
+        $this->_datasets[$name] = $dataset;
     }
 
     /**
