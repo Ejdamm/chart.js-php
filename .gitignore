@@ -1,6 +1,4 @@
-/*
+vendor
+logs
+composer.phar
 
-!.gitignore
-!*.js
-!*.php
-!*.md

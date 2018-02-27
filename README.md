@@ -4,22 +4,31 @@ A PHP wrapper for [chartjs/Chart.js](https://github.com/chartjs/Chart.js)
 This project is an expansion of [HugoHeneault's](https://github.com/HugoHeneault/Chart.js-PHP) repository
 
 ## How to use
-Include Chart.js and driver.js before the end of your body (change src according to your project)
+Include [js/Chart.js](js/Chart.js) and [js/driver.js](js/driver.js) before the end of your body (change src according to your project)
 ```html
 <html>
   <body>
     <!-- Your awesome project comes here -->
 
     <!-- And here are Chart.js and Chart.js-PHP -->
-    <script src="Chart.js"></script>
-    <script src="driver.js"></script>
+    <script src="js/Chart.js"></script>
+    <script src="js/driver.js"></script>
   </body>
 </html>
 ```
 
-Load ChartJS-PHP class
-```php
-require 'ChartJS.php';
+Install ChartJS-PHP via composer
+```json
+{
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/Ejdamm/Chart.js-PHP"
+        }],
+    "require": {
+        "Ejdamm/Chart.js-PHP": "dev-master"
+    }
+}
 ```
 
 Then, create your charts using PHP.
@@ -27,7 +36,7 @@ Then, create your charts using PHP.
 $labels = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
 $options = array();
 $attributes = array('id' => 'example', 'width' => 500, 'height' => 500);
-$Line = new ChartJS('line', $labels, $options, $attributes);
+$Line = new ChartJs\ChartJS('line', $labels, $options, $attributes);
 
 $dataset = array(
     'data' => array(8, 7, 8, 9, 6),
@@ -53,7 +62,8 @@ Finally, load these charts with a small piece of javascript when your document i
 ## Full example
 ```php
 <?php
-require 'ChartJS.php';
+require 'vendor/autoload.php';
+use ChartJs\ChartJS;
 
 $labels = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
 $options = array('responsive' => false);
@@ -66,7 +76,7 @@ $dataset = array(
     'borderColor' => '#e5801d',
     'label' => 'Legend'
 );
-$Line->addDataset($datasets);
+$Line->addDataset($dataset);
 
 ?><!DOCTYPE html>
 <html>
@@ -77,8 +87,8 @@ $Line->addDataset($datasets);
     <?php
       echo $Line;
     ?>
-    <script src="Chart.js"></script>
-    <script src="driver.js"></script>
+    <script src="vendor/Ejdamm/Chart.js-PHP/js/Chart.js"></script>
+    <script src="vendor/Ejdamm/Chart.js-PHP/js/driver.js"></script>
     <script>
       (function() {
         loadChartJsPhp();
@@ -95,4 +105,4 @@ Full documentation is available at [Chart.js](http://www.chartjs.org/docs/latest
 If you are going to use time axis you need either to include Moment.js or Chart.bundle.js instead of Chart.js to your project. Chart.bundle.js consists of both Chart.js and Moment.js (which is needed for time axis).
 
 ## Contributing
-Do not hesitate to edit or improve my code with bugfix and new functionnalities!
+Do not hesitate to edit or improve my code with bugfix and new functionalities!

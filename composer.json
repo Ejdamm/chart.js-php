@@ -1,0 +1,39 @@
+{
+  "name": "Ejdamm/Chart.js-PHP",
+  "homepage": "https://github.com/Ejdamm/Chart.js-PHP",
+  "license": "MIT",
+  "description": "PHP Wrapper for Chart.js.",
+  "authors": [
+    {
+      "name": "Hugo Heneault",
+      "email": "hugo.heneault@gmail.com",
+      "homepage": "https://github.com/HugoHeneault"
+    },
+    {
+      "name": "Adam Georgsson",
+      "email": "adamgeorgsson@gmail.com",
+      "homepage": "https://github.com/Ejdamm"
+    },
+    {
+      "name": "Christof Bachmann",
+      "email": "code@christof-b.de",
+      "homepage": "https://github.com/christof-b"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "ChartJs\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ChartJs\\ChartJs\\": "tests"
+    }
+  }
+}

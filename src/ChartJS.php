@@ -1,5 +1,7 @@
 <?php
 
+namespace ChartJs;
+
 class ChartJS
 {
     /**
