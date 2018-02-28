@@ -5,43 +5,43 @@ namespace ChartJs;
 class ChartJS
 {
     /**
-     * @var array chart data
+     * @var array chart datasets
      */
-    protected $_datasets = array();
+    private $datasets = array();
 
     /**
      * @var array chart labels
      */
-    protected $_labels = array();
+    private $labels = array();
 
     /**
      * The chart type
      * @var string
      */
-    protected $_type = '';
+    private $type = '';
 
     /**
      * @var array Specific options for chart
      */
-    protected $_options = array();
+    private $options = array();
 
     /**
      * @var array Canvas html attributes
      */
-    protected $_attributes = array();
+    private $attributes = array();
 
     public function __construct($type = 'line', $labels = array(), $options = array(), $attributes = array())
     {
-        $this->_type = $type;
-        $this->_labels = $labels;
-        $this->_options = $options;
+        $this->type = $type;
+        $this->labels = $labels;
+        $this->options = $options;
 
         // Always save otherAttributes as array
         if ($attributes && !is_array($attributes)) {
             $attributes = array($attributes);
         }
 
-        $this->_attributes = $attributes;
+        $this->attributes = $attributes;
     }
 
     /**
@@ -54,10 +54,10 @@ class ChartJS
 
     public function renderCanvas()
     {
-        $data = $this->_renderData();
-        $options = $this->_renderOptions();
-        $attributes = $this->_renderAttributes();
-        $canvas = "<canvas$attributes data-chartjs=\"" . $this->_type . "\" $data $options></canvas>";
+        $data = $this->renderData();
+        $options = $this->renderOptions();
+        $attributes = $this->renderAttributes();
+        $canvas = "<canvas$attributes data-chartjs=\"" . $this->type . "\" $data $options></canvas>";
 
         return $canvas;
     }
@@ -70,23 +70,23 @@ class ChartJS
     public function addDataset($dataset, $name = null)
     {
         if (!$name) {
-            $name = count($this->_datasets);
+            $name = count($this->datasets);
         }
-        $this->_datasets[$name] = $dataset;
+        $this->datasets[$name] = $dataset;
     }
 
     /**
      * Prepare canvas' attributes
      * @return string
      */
-    protected function _renderAttributes()
+    private function renderAttributes()
     {
         $attributes = '';
-        if (!isset($this->_attributes['id'])) {
-            $this->_attributes['id'] = uniqid('chartjs_', true);
+        if (!isset($this->attributes['id'])) {
+            $this->attributes['id'] = uniqid('chartjs_', true);
         }
 
-        foreach ($this->_attributes as $attribute => $value) {
+        foreach ($this->attributes as $attribute => $value) {
             $attributes .= ' ' . $attribute . '="' . $value . '"';
         }
 
@@ -97,21 +97,21 @@ class ChartJS
      * Render custom options for the chart
      * @return string
      */
-    protected function _renderOptions()
+    private function renderOptions()
     {
-        if (empty($this->_options)) {
+        if (empty($this->options)) {
             return ' data-options=\'null\'';
         }
-        return ' data-options=\'' . json_encode($this->_options) . '\'';
+        return ' data-options=\'' . json_encode($this->options) . '\'';
     }
 
     /**
      * Prepare data (labels and dataset) for the chart
      * @return string
      */
-    protected function _renderData()
+    private function renderData()
     {
-        $array_data = array('labels' => $this->_labels, 'datasets' => $this->_datasets);
+        $array_data = array('labels' => $this->labels, 'datasets' => $this->datasets);
 
         return ' data-data=\'' . json_encode($array_data) . '\'';
     }
