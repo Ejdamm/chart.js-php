@@ -35,5 +35,10 @@
     "psr-4": {
       "ChartJs\\ChartJs\\": "tests"
     }
+  },
+  "config": {
+    "platform": {
+      "php": "5.6"
+    }
   }
 }
