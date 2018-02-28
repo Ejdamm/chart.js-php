@@ -15,6 +15,10 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
      */
     const HTML_TAG_PATTERN = '/^<canvas ("[^"]*"|\'[^\']*\'|[^\'">])*><\/canvas>$/';
 
+    /**
+     * @var string
+     */
+    const DATA_OPTIONS_PATTERN = '/data\-options=\'([^\']+)\'/';
 
 	/**
 	 * @var string
@@ -78,12 +82,13 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
      */
     public function testCanvasContainsOptions()
     {
-        $chart = new ChartJS();
+        $expected = 'test';
+        $chart = new ChartJS(null, null, $expected);
         $html = $chart->renderCanvas();
-        // Stop here and mark this test as incomplete.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $matches = [];
+        $this->assertNotFalse(preg_match(self::DATA_OPTIONS_PATTERN,$html ,$matches));
+        $result = isset($matches[1]) ? json_decode($matches[1]) : null;
+        $this->assertEquals($expected, $result);
     }
 
     /**
@@ -93,13 +98,13 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
      */
     public function testCanvasContainsType()
     {
-        $testType = 'test';
-        $chart = new ChartJS($testType);
+        $expected = 'test';
+        $chart = new ChartJS($expected);
         $html = $chart->renderCanvas();
         $matches = [];
-        $this->assertNotFalse(preg_match(self::DATA_TYPE_PATTERN,$html,$matches));
-        $type = $matches[1];
-        $this->assertEquals($type,$testType);
+        $this->assertNotFalse(preg_match(self::DATA_TYPE_PATTERN,$html ,$matches));
+        $result = isset($matches[1]) ? $matches[1] : null;
+        $this->assertEquals($expected, $result);
     }
 
     /**
