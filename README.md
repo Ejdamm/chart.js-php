@@ -1,5 +1,7 @@
 Chart.js-PHP
 ============
+[![Build Status](https://travis-ci.org/Ejdamm/Chart.js-PHP.svg?branch=master)](https://travis-ci.org/Ejdamm/Chart.js-PHP)
+
 A PHP wrapper for [chartjs/Chart.js](https://github.com/chartjs/Chart.js)
 This project is an expansion of [HugoHeneault's](https://github.com/HugoHeneault/Chart.js-PHP) repository
 
