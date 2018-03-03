@@ -3,30 +3,30 @@ require '../vendor/autoload.php';
 use ChartJs\ChartJS;
 
 
-$data = array(
-            array(28, 48, 40, 19, 86, 27, 90),
-            array(65, 59, 80, 81, 56, 55, 40)
-        );
-$labels = array("January", "February", "March", "April", "May", "June", "July");
-$colors = array(
-              array('backgroundColor' => 'rgba(28,116,190,.8)', 'borderColor' => 'blue'),
-              array('backgroundColor' => '#f2b21a', 'borderColor' => '#e5801d'),
-              array('backgroundColor' => array('blue', 'purple', 'red', 'black', 'brown', 'pink', 'green'))
-          );
+$data = [
+            [28, 48, 40, 19, 86, 27, 90],
+            [65, 59, 80, 81, 56, 55, 40]
+        ];
+$labels = ["January", "February", "March", "April", "May", "June", "July"];
+$colors = [
+              ['backgroundColor' => 'rgba(28,116,190,.8)', 'borderColor' => 'blue'],
+              ['backgroundColor' => '#f2b21a', 'borderColor' => '#e5801d'],
+              ['backgroundColor' => ['blue', 'purple', 'red', 'black', 'brown', 'pink', 'green']]
+          ];
 
 //There is a bug in Chart.js that ignores canvas width/height if responsive is not set to false
-$options = array('responsive' => false);
+$options = ['responsive' => false];
 
 //html attributes fot the canvas element
-$attributes = array('id' => 'example', 'width' => 500, 'height' => 500, 'style' => 'display:inline;');
+$attributes = ['id' => 'example', 'width' => 500, 'height' => 500, 'style' => 'display:inline;'];
 
-$datasets = array(
-                array('data' => $data[0], 'label' => "Legend1") + $colors[0],
-                array('data' => $data[1], 'label' => "Legend2") + $colors[1],
-                array('data' => $data[0], 'label' => "Legend1") + $colors[1],
-                array('data' => $data[1], 'label' => "Legend2") + $colors[2],
-                array('data' => $data[0]) + $colors[2],
-            );
+$datasets = [
+                ['data' => $data[0], 'label' => "Legend1"] + $colors[0],
+                ['data' => $data[1], 'label' => "Legend2"] + $colors[1],
+                ['data' => $data[0], 'label' => "Legend1"] + $colors[1],
+                ['data' => $data[1], 'label' => "Legend2"] + $colors[2],
+                ['data' => $data[0]] + $colors[2],
+            ];
 
 /*
  * Create charts

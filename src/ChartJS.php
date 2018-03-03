@@ -7,12 +7,12 @@ class ChartJS
     /**
      * @var array chart datasets
      */
-    private $datasets = array();
+    private $datasets = [];
 
     /**
      * @var array chart labels
      */
-    private $labels = array();
+    private $labels = [];
 
     /**
      * The chart type
@@ -23,14 +23,14 @@ class ChartJS
     /**
      * @var array Specific options for chart
      */
-    private $options = array();
+    private $options = [];
 
     /**
      * @var array Canvas html attributes
      */
-    private $attributes = array();
+    private $attributes = [];
 
-    public function __construct($type = 'line', $labels = array(), $options = array(), $attributes = array())
+    public function __construct($type = 'line', $labels = [], $options = [], $attributes = [])
     {
         $this->type = $type;
         $this->labels = $labels;
@@ -38,7 +38,7 @@ class ChartJS
 
         // Always save otherAttributes as array
         if ($attributes && !is_array($attributes)) {
-            $attributes = array($attributes);
+            $attributes = [$attributes];
         }
 
         $this->attributes = $attributes;
@@ -111,7 +111,7 @@ class ChartJS
      */
     private function renderData()
     {
-        $array_data = array('labels' => $this->labels, 'datasets' => $this->datasets);
+        $array_data = ['labels' => $this->labels, 'datasets' => $this->datasets];
 
         return ' data-data=\'' . json_encode($array_data) . '\'';
     }
