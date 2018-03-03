@@ -5,14 +5,9 @@ namespace ChartJs;
 class ChartJS
 {
     /**
-     * @var array chart datasets
+     * @var array chart data
      */
-    private $datasets = [];
-
-    /**
-     * @var array chart labels
-     */
-    private $labels = [];
+    private $data = [];
 
     /**
      * The chart type
@@ -30,13 +25,13 @@ class ChartJS
      */
     private $attributes = [];
 
-    public function __construct($type = 'line', $labels = [], $options = [], $attributes = [])
+    public function __construct($type = 'line', $data = [], $options = [], $attributes = [])
     {
         $this->type = $type;
-        $this->labels = $labels;
+        $this->data = $data;
         $this->options = $options;
 
-        // Always save otherAttributes as array
+        // Always save attributes as array
         if ($attributes && !is_array($attributes)) {
             $attributes = [$attributes];
         }
@@ -54,10 +49,10 @@ class ChartJS
 
     public function renderCanvas()
     {
-        $data = $this->renderData();
-        $options = $this->renderOptions();
-        $attributes = $this->renderAttributes();
-        $canvas = "<canvas$attributes data-chartjs=\"" . $this->type . "\" $data $options></canvas>";
+        $renderedData = $this->renderData();
+        $renderedOptions = $this->renderOptions();
+        $renderedAttributes = $this->renderAttributes();
+        $canvas = "<canvas$renderedAttributes data-chartjs=\"" . $this->type . "\" $renderedData $renderedOptions></canvas>";
 
         return $canvas;
     }
@@ -65,14 +60,10 @@ class ChartJS
     /**
      * Add a set of data
      * @param array $dataset
-     * @param null $name Name can be used to identify a dataset
      */
-    public function addDataset($dataset, $name = null)
+    public function addDataset($dataset)
     {
-        if (!$name) {
-            $name = count($this->datasets);
-        }
-        $this->datasets[$name] = $dataset;
+        $this->data['datasets'][] = $dataset;
     }
 
     /**
@@ -100,9 +91,9 @@ class ChartJS
     private function renderOptions()
     {
         if (empty($this->options)) {
-            return ' data-options=\'null\'';
+            return 'data-options=\'null\'';
         }
-        return ' data-options=\'' . json_encode($this->options) . '\'';
+        return 'data-options=\'' . json_encode($this->options) . '\'';
     }
 
     /**
@@ -111,8 +102,9 @@ class ChartJS
      */
     private function renderData()
     {
-        $array_data = ['labels' => $this->labels, 'datasets' => $this->datasets];
-
-        return ' data-data=\'' . json_encode($array_data) . '\'';
+        if (empty($this->data)) {
+            return 'data-data=\'null\'';
+        }
+        return 'data-data=\'' . json_encode($this->data) . '\'';
     }
 }
