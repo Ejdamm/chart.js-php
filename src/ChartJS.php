@@ -52,7 +52,7 @@ class ChartJS
         $renderedData = $this->renderData();
         $renderedOptions = $this->renderOptions();
         $renderedAttributes = $this->renderAttributes();
-        $canvas = "<canvas$renderedAttributes data-chartjs=\"" . $this->type . "\" $renderedData $renderedOptions></canvas>";
+        $canvas = "<canvas$renderedAttributes data-chartjs='" . $this->type . "' $renderedData $renderedOptions></canvas>";
 
         return $canvas;
     }

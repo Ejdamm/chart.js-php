@@ -23,7 +23,7 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @var string
 	 */
-	const DATA_TYPE_PATTERN = '/data\-chartjs="([^"]+)"/';
+	const DATA_TYPE_PATTERN = '/data\-chartjs=\'([^ ]+)\'/';
 
     /**
      * @return void
@@ -62,6 +62,7 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers ::renderCanvas
+     * @covers ::renderAttributes
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
@@ -77,6 +78,7 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers ::renderCanvas
+     * @covers ::renderOptions
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
@@ -109,6 +111,7 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers ::renderCanvas
+     * @covers ::renderData
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
@@ -124,10 +127,11 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers ::renderCanvas
+     * @covers ::renderData
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
-    public function testCanvasContainsData()
+    public function testCanvasContainsDatasets()
     {
         $chart = new ChartJS();
         $html = $chart->renderCanvas();
