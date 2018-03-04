@@ -93,7 +93,7 @@ echo $PolarArea;
 echo $Pie. $Doughnut;
 ?>
 
-<script src="../js/Chart.js"></script>
+<script src="../js/Chart.min.js"></script>
 <script src="../js/driver.js"></script>
 <script>
     (function () {

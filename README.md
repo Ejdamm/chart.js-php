@@ -4,14 +4,14 @@ A PHP wrapper for [chartjs/Chart.js](https://github.com/chartjs/Chart.js)
 This project is an expansion of [HugoHeneault's](https://github.com/HugoHeneault/Chart.js-PHP) repository
 
 ## How to use
-Include [js/Chart.js](js/Chart.js) and [js/driver.js](js/driver.js) before the end of your body (change src according to your project)
+Include [js/Chart.min.js](js/Chart.min.js) and [js/driver.js](js/driver.js) before the end of your body (change src according to your project). If you want to use CDN instead see [here](. For CDN see here https://cdnjs.com/libraries/Chart.js)
 ```html
 <html>
   <body>
     <!-- Your awesome project comes here -->
 
-    <!-- And here are Chart.js and Chart.js-PHP -->
-    <script src="js/Chart.js"></script>
+    <!-- And here are Chart.js -->
+    <script src="js/Chart.min.js"></script>
     <script src="js/driver.js"></script>
   </body>
 </html>
@@ -87,7 +87,7 @@ $Line->addDataset($dataset);
     <?php
       echo $Line;
     ?>
-    <script src="vendor/Ejdamm/Chart.js-PHP/js/Chart.js"></script>
+    <script src="vendor/Ejdamm/Chart.js-PHP/js/Chart.min.js"></script>
     <script src="vendor/Ejdamm/Chart.js-PHP/js/driver.js"></script>
     <script>
       (function() {
