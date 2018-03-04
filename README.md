@@ -35,18 +35,18 @@ Install ChartJS-PHP via composer
 
 Then, create your charts using PHP.
 ```php
-$labels = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
-$options = array();
-$attributes = array('id' => 'example', 'width' => 500, 'height' => 500);
-$Line = new ChartJs\ChartJS('line', $labels, $options, $attributes);
-
-$dataset = array(
-    'data' => array(8, 7, 8, 9, 6),
-    'backgroundColor' => '#f2b21a',
-    'borderColor' => '#e5801d',
-    'label' => 'Legend'
-);
-$Line->addDataset($dataset);
+$data = [
+    'labels' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    'datasets' => [[
+        'data' =>[8, 7, 8, 9, 6],
+        'backgroundColor' => '#f2b21a',
+        'borderColor' => '#e5801d',
+        'label' => 'Legend'
+    ]]
+];
+$options = [];
+$attributes = ['id' => 'example', 'width' => 500, 'height' => 500];
+$Line = new ChartJs\ChartJS('line', $data, $options, $attributes);
 
 // Echo your line
 echo $Line;
@@ -67,18 +67,18 @@ Finally, load these charts with a small piece of javascript when your document i
 require 'vendor/autoload.php';
 use ChartJs\ChartJS;
 
-$labels = array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday');
-$options = array('responsive' => false);
-$attributes = array('id' => 'example', 'width' => 500, 'height' => 500);
-$Line = new ChartJS('line', $labels, $options, $attributes);
-
-$dataset = array(
-    'data' => array(8, 7, 8, 9, 6),
-    'backgroundColor' => '#f2b21a',
-    'borderColor' => '#e5801d',
-    'label' => 'Legend'
-);
-$Line->addDataset($dataset);
+$data = [
+    'labels' => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    'datasets' => [[
+        'data' =>[8, 7, 8, 9, 6],
+        'backgroundColor' => '#f2b21a',
+        'borderColor' => '#e5801d',
+        'label' => 'Legend'
+    ]]
+];
+$options = ['responsive' => false];
+$attributes = ['id' => 'example', 'width' => 500, 'height' => 500];
+$Line = new ChartJS('line', $data, $options, $attributes);
 
 ?><!DOCTYPE html>
 <html>
