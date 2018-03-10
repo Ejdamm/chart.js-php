@@ -18,12 +18,27 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
+    const HTML_ATTRIBUTES_PATTERN = '/class="([^"]+)"/';
+
+    /**
+     * @var string
+     */
+    const HTML_ID_PATTERN = '/id="chartjs_([^"]+)"/';
+
+    /**
+     * @var string
+     */
     const DATA_OPTIONS_PATTERN = '/data\-options=\'([^\']+)\'/';
 
 	/**
 	 * @var string
 	 */
 	const DATA_TYPE_PATTERN = '/data\-chartjs=\'([^ ]+)\'/';
+
+    /**
+	 * @var string
+	 */
+	const DATA_DATA_PATTERN = '/data\-data=\'([^ ]+)\'/';
 
     /**
      * @return void
@@ -41,7 +56,7 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
     {
         $chart = new ChartJS();
         $html = $chart->renderCanvas();
-        $this->assertNotFalse(preg_match(self::HTML_TAG_PATTERN,$html));
+        $this->assertNotFalse(preg_match(self::HTML_TAG_PATTERN, $html));
     }
 
     /**
@@ -68,12 +83,28 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
      */
     public function testCanvasContainsAttributes()
     {
+        $expected = 'test_id';
+        $chart = new ChartJS(null, null, null, ['class' => $expected]);
+        $html = $chart->renderCanvas();
+        $matches = [];
+        $this->assertNotFalse(preg_match(self::HTML_ATTRIBUTES_PATTERN, $html ,$matches));
+        $result = isset($matches[1]) ? $matches[1] : null;
+        $this->assertEquals($expected, $result);
+    }
+
+    /**
+     * @covers ::renderCanvas
+     * @covers ::renderAttributes
+     * @depends testConstruct
+     * @depends testRenderCanvasReturnsValidHtml
+     */
+    public function testCanvasAutogenerateId()
+    {
         $chart = new ChartJS();
         $html = $chart->renderCanvas();
-        // Stop here and mark this test as incomplete.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $matches = [];
+        $this->assertNotFalse(preg_match(self::HTML_ID_PATTERN, $html ,$matches));
+        $this->assertCount(2, $matches);
     }
 
     /**
@@ -88,7 +119,7 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
         $chart = new ChartJS(null, null, $expected);
         $html = $chart->renderCanvas();
         $matches = [];
-        $this->assertNotFalse(preg_match(self::DATA_OPTIONS_PATTERN,$html ,$matches));
+        $this->assertNotFalse(preg_match(self::DATA_OPTIONS_PATTERN, $html ,$matches));
         $result = isset($matches[1]) ? json_decode($matches[1]) : null;
         $this->assertEquals($expected, $result);
     }
@@ -104,7 +135,7 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
         $chart = new ChartJS($expected);
         $html = $chart->renderCanvas();
         $matches = [];
-        $this->assertNotFalse(preg_match(self::DATA_TYPE_PATTERN,$html ,$matches));
+        $this->assertNotFalse(preg_match(self::DATA_TYPE_PATTERN, $html ,$matches));
         $result = isset($matches[1]) ? $matches[1] : null;
         $this->assertEquals($expected, $result);
     }
@@ -115,30 +146,15 @@ class ChartJsTest extends \PHPUnit_Framework_TestCase
      * @depends testConstruct
      * @depends testRenderCanvasReturnsValidHtml
      */
-    public function testCanvasContainsLabels()
+    public function testCanvasContainsData()
     {
-        $chart = new ChartJS();
+        $expected = 'test';
+        $chart = new ChartJS(null, $expected);
         $html = $chart->renderCanvas();
-        // Stop here and mark this test as incomplete.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
-    }
-
-    /**
-     * @covers ::renderCanvas
-     * @covers ::renderData
-     * @depends testConstruct
-     * @depends testRenderCanvasReturnsValidHtml
-     */
-    public function testCanvasContainsDatasets()
-    {
-        $chart = new ChartJS();
-        $html = $chart->renderCanvas();
-        // Stop here and mark this test as incomplete.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $matches = [];
+        $this->assertNotFalse(preg_match(self::DATA_DATA_PATTERN, $html ,$matches));
+        $result = isset($matches[1]) ? json_decode($matches[1]) : null;
+        $this->assertEquals($expected, $result);
     }
 
 }
