@@ -28,7 +28,7 @@ Install ChartJS-PHP via composer
             "url": "https://github.com/Ejdamm/Chart.js-PHP"
         }],
     "require": {
-        "Ejdamm/Chart.js-PHP": "dev-master"
+        "ejdamm/chart.js-php": "dev-master"
     }
 }
 ```
